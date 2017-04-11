@@ -1,126 +1,38 @@
-'use strict'
-
+'use strict';
 
 var el = document.getElementById('sales-estimates');
-var firstAndPike = {
-  minCust: 23,
-  maxCust: 65,
-  avgSale: 6.3,
-  numCookies: [],
-  totalSales: 0,
-  hour: 5,
-  customerNumber: function(){
-    el.innerHTML += '<h3>1st and Pike</h3> \n <ul>Estimated Sales</ul>';
-    for (var customers = 0; customers < 15 ; customers++ ) {
-      var randomNum = Math.floor((Math.random()* (this.maxCust - this.minCust) + this.minCust));
-      this.numCookies.push(Math.round(randomNum * this.avgSale));
-      this.totalSales += this.numCookies[customers];
-      this.hour++
-      if (customers < 7 ) {
-        el.innerHTML += '<li>' + this.hour + 'am: ' + this.numCookies[customers] + ' cookies' + '</li>';
-      } else {
-        el.innerHTML += '<li>' + (this.hour-12) + 'pm: ' + this.numCookies[customers] + ' cookies' + '</li>';
-      }
-    }
-    el.innerHTML += '<li> total: ' + this.totalSales + ' cookies';
-  }
+function StoreSalesGenerator(Name, minCust, maxCust, avgSale) {
+  this.storeName = name;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgSale = avgSale;
+  this.numCookies = [];
+  this.totalSales = 0;
+  this.hour = 5;
 }
 
-var seaTac = {
-  minCust: 3,
-  maxCust: 24,
-  avgSale: 1.2,
-  numCookies: [],
-  totalSales: 0,
-  hour: 5,
-  customerNumber: function(){
-    el.innerHTML += '<h3>SeaTac Airport</h3> \n <ul>Estimated Sales</ul>';
-    for (var customers = 0; customers < 15 ; customers++ ) {
-      var randomNum = Math.floor((Math.random()* (this.maxCust - this.minCust) + this.minCust));
-      this.numCookies.push(Math.round(randomNum * this.avgSale));
-      this.totalSales += this.numCookies[customers];
-      this.hour++
-      if (customers < 7 ) {
-        el.innerHTML += '<li>' + this.hour + 'am: ' + this.numCookies[customers] + ' cookies' + '</li>';
-      } else {
-        el.innerHTML += '<li>' + (this.hour-12) + 'pm: ' + this.numCookies[customers] + ' cookies' + '</li>';
-      }
+StoreSalesGenerator.prototype.customerNumber = function(){
+  el.innerHTML += '<h3>' + this.storeName + '</h3> \n <ul>Estimated Sales</ul>';
+  for (var customers = 0; customers < 15 ; customers++ ) {
+    var randomNum = Math.floor((Math.random()* (this.maxCust - this.minCust) + this.minCust));
+    this.numCookies.push(Math.round(randomNum * this.avgSale));
+    this.totalSales += this.numCookies[customers];
+    this.hour++
+    if (customers < 7 ) {
+      el.innerHTML += '<li>' + this.hour + 'am: ' + this.numCookies[customers] + ' cookies' + '</li>';
+    } else {
+      el.innerHTML += '<li>' + (this.hour-12) + 'pm: ' + this.numCookies[customers] + ' cookies' + '</li>';
     }
-    el.innerHTML += '<li> total: ' + this.totalSales + ' cookies';
   }
+  el.innerHTML += '<li> total: ' + this.totalSales + ' cookies';
 }
 
-var seaCenter = {
-  minCust: 11,
-  maxCust: 38,
-  avgSale: 3.7,
-  numCookies: [],
-  totalSales: 0,
-  hour: 5,
-  customerNumber: function(){
-    el.innerHTML += '<h3>Seattle Center</h3> \n <ul>Estimated Sales</ul>';
-    for (var customers = 0; customers < 15 ; customers++ ) {
-      var randomNum = Math.floor((Math.random()* (this.maxCust - this.minCust) + this.minCust));
-      this.numCookies.push(Math.round(randomNum * this.avgSale));
-      this.totalSales += this.numCookies[customers];
-      this.hour++
-      if (customers < 7 ) {
-        el.innerHTML += '<li>' + this.hour + 'am: ' + this.numCookies[customers] + ' cookies' + '</li>';
-      } else {
-        el.innerHTML += '<li>' + (this.hour-12) + 'pm: ' + this.numCookies[customers] + ' cookies' + '</li>';
-      }
-    }
-    el.innerHTML += '<li> total: ' + this.totalSales + ' cookies';
-  }
-}
+var firstAndPike = new StoreSalesGenerator('1st and Pike', 23, 65, 6.3);
+var seaTac = new StoreSalesGenerator('SeaTac', 3, 24, 1.2);
+var seaCenter = new StoreSalesGenerator('Seattle Center', 11, 38, 3.7);
+var capitolHill = new StoreSalesGenerator('Capiltol Hill', 20, 38, 2.3);
+var alki = new StoreSalesGenerator('Alki', 2, 16, 4.6);
 
-var capitolHill = {
-  minCust: 20,
-  maxCust: 38,
-  avgSale: 2.3,
-  numCookies: [],
-  totalSales: 0,
-  hour: 5,
-  customerNumber: function(){
-    el.innerHTML += '<h3>Capitol Hill</h3> \n <ul>Estimated Sales</ul>';
-    for (var customers = 0; customers < 15 ; customers++ ) {
-      var randomNum = Math.floor((Math.random()* (this.maxCust - this.minCust) + this.minCust));
-      this.numCookies.push(Math.round(randomNum * this.avgSale));
-      this.totalSales += this.numCookies[customers];
-      this.hour++
-      if (customers < 7 ) {
-        el.innerHTML += '<li>' + this.hour + 'am: ' + this.numCookies[customers] + ' cookies' + '</li>';
-      } else {
-        el.innerHTML += '<li>' + (this.hour-12) + 'pm: ' + this.numCookies[customers] + ' cookies' + '</li>';
-      }
-    }
-    el.innerHTML += '<li> total: ' + this.totalSales + ' cookies </li>';
-  }
-}
-
-var alki = {
-  minCust: 2,
-  maxCust: 16,
-  avgSale: 4.6,
-  numCookies: [],
-  totalSales: 0,
-  hour: 5,
-  customerNumber: function(){
-    el.innerHTML += '<h3>Alki</h3> \n <ul>Estimated Sales</ul>';
-    for (var customers = 0; customers < 15 ; customers++ ) {
-      var randomNum = Math.floor((Math.random()* (this.maxCust - this.minCust) + this.minCust));
-      this.numCookies.push(Math.round(randomNum * this.avgSale));
-      this.totalSales += this.numCookies[customers];
-      this.hour++
-      if (customers < 7 ) {
-        el.innerHTML += '<li>' + this.hour + 'am: ' + this.numCookies[customers] + ' cookies' + '</li>';
-      } else {
-        el.innerHTML += '<li>' + (this.hour-12) + 'pm: ' + this.numCookies[customers] + ' cookies' + '</li>';
-      }
-    }
-    el.innerHTML += '<li> total: ' + this.totalSales + ' cookies';
-  }
-}
 firstAndPike.customerNumber();
 seaTac.customerNumber();
 seaCenter.customerNumber();
