@@ -1,7 +1,7 @@
 'use strict'
 
 
-var el = document.getElementById('info');
+var el = document.getElementById('sales-estimates');
 var firstAndPike = {
   minCust: 23,
   maxCust: 65,
