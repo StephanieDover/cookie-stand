@@ -36,3 +36,6 @@ img {
   margin-left: 50px;
   display: inline-block;
 }
+nav {
+  display: block;
+}
