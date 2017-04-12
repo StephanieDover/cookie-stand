@@ -7,7 +7,7 @@ function StoreSalesGenerator(name, minCust, maxCust, avgSale) {
   this.avgSale = avgSale;
   this.numCookies = [];
   this.totalSales = 0;
-  this.hour = 5;
+  this.hour = 6;
 }
 
 var newText = document.createTextNode('text');
@@ -20,7 +20,7 @@ var storeHour = function(){
   tableData = document.createElement ('td');
   tableRow.appendChild(tableData);
   tableData = document.createElement ('td');
-  for (var hour = 5; hour < 20; hour++ ) {
+  for (var hour = 6; hour < 20; hour++ ) {
     tableHeader = document.createElement ('th');
     if (hour < 12 ) {
       newText = document.createTextNode(hour + ' am ');
@@ -49,7 +49,7 @@ StoreSalesGenerator.prototype.estimatedCookies = function(){
   tableHeader.appendChild(newText);
   tableRow.appendChild(tableHeader);
 
-  for (var customers = 0; customers < 15; customers++ ) {
+  for (var customers = 0; customers < 14; customers++ ) {
 
     var randomNum = Math.floor((Math.random()* (this.maxCust - this.minCust) + this.minCust));
     this.numCookies.push(Math.round(randomNum * this.avgSale));
@@ -70,7 +70,7 @@ StoreSalesGenerator.prototype.estimatedCookies = function(){
 var firstAndPike = new StoreSalesGenerator('1st and Pike', 23, 65, 6.3);
 var seaTac = new StoreSalesGenerator('SeaTac', 3, 24, 1.2);
 var seaCenter = new StoreSalesGenerator('Seattle Center', 11, 38, 3.7);
-var capitolHill = new StoreSalesGenerator('Capiltol Hill', 20, 38, 2.3);
+var capitolHill = new StoreSalesGenerator('Capitol Hill', 20, 38, 2.3);
 var alki = new StoreSalesGenerator('Alki', 2, 16, 4.6);
 
 storeHour();
