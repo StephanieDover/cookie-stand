@@ -7,36 +7,28 @@ function StoreSalesGenerator(name, minCust, maxCust, avgSale) {
   this.avgSale = avgSale;
   this.numCookies = [];
   this.totalSales = 0;
-  this.hour = 6;
 }
 
 var newText = document.createTextNode('text');
-var tableRow, tableHeader, tableData;
+var tableRow = document.createElement('tr');
+var tableHeader = document.createElement('th');
+var tableData = document.createElement ('td');
 var position = document.getElementById('sales-estimates');
+var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 var storeHour = function(){
-  tableRow = document.createElement ('tr');
-  position.appendChild(tableRow);
   tableData = document.createElement ('td');
+  newText = document.createTextNode('');
+  tableData.appendChild(newText);
   tableRow.appendChild(tableData);
-  tableData = document.createElement ('td');
-  for (var hour = 6; hour < 20; hour++ ) {
-    tableHeader = document.createElement ('th');
-    if (hour < 12 ) {
-      newText = document.createTextNode(hour + ' am ');
-      tableHeader.appendChild(newText);
-      tableRow.appendChild(tableHeader);
-    } else if (hour == 12) {
-      newText = document.createTextNode('12pm ');
-      tableHeader.appendChild(newText);
-      tableRow.appendChild(tableHeader);
-    } else {
-      newText = document.createTextNode((hour-12) + 'pm ');
-      tableHeader.appendChild(newText);
-      tableRow.appendChild(tableHeader);
-    }
+  position.appendChild(tableRow);
+  tableRow.appendChild(tableHeader);
+  for (var storeHour = 0; storeHour < hours.length; storeHour++ ) {
+    tableData = document.createElement ('td');
+    newText = document.createTextNode(hours[storeHour]);
+    tableData.appendChild(newText);
+    tableRow.appendChild(tableData);
   }
-  tableHeader = document.createElement ('th');
   newText = document.createTextNode('Daily Location Totals');
   tableHeader.appendChild(newText);
   tableRow.appendChild(tableHeader);
@@ -49,7 +41,7 @@ StoreSalesGenerator.prototype.estimatedCookies = function(){
   tableHeader.appendChild(newText);
   tableRow.appendChild(tableHeader);
 
-  for (var customers = 0; customers < 14; customers++ ) {
+  for (var customers = 0; customers < hours.length; customers++ ) {
 
     var randomNum = Math.floor((Math.random()* (this.maxCust - this.minCust) + this.minCust));
     this.numCookies.push(Math.round(randomNum * this.avgSale));
