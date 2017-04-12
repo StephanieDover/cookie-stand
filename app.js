@@ -49,7 +49,7 @@ StoreSalesGenerator.prototype.estimatedCookies = function(){
   tableHeader.appendChild(newText);
   tableRow.appendChild(tableHeader);
 
-  for (var customers = 0; customers < 14; customers++ ) {
+  for (var customers = 0; customers < 15; customers++ ) {
 
     var randomNum = Math.floor((Math.random()* (this.maxCust - this.minCust) + this.minCust));
     this.numCookies.push(Math.round(randomNum * this.avgSale));
