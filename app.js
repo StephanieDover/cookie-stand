@@ -17,6 +17,9 @@ var position = document.getElementById('sales-estimates');
 var storeHour = function(){
   tableRow = document.createElement ('tr');
   position.appendChild(tableRow);
+  tableData = document.createElement ('td');
+  tableRow.appendChild(tableData);
+  tableData = document.createElement ('td');
   for (var hour = 5; hour < 20; hour++ ) {
     tableHeader = document.createElement ('th');
     if (hour < 12 ) {
@@ -52,29 +55,17 @@ StoreSalesGenerator.prototype.estimatedCookies = function(){
     this.numCookies.push(Math.round(randomNum * this.avgSale));
     this.totalSales += this.numCookies[customers];
     tableData = document.createElement ('td');
-    newText = document.createTextNode(this.numCookies[customers] + 'cookies');
+    newText = document.createTextNode(this.numCookies[customers] + ' cookies');
     tableData.appendChild(newText);
     tableRow.appendChild(tableData);
 
   }
   tableData = document.createElement ('td');
-  newText = document.createTextNode(this.totalSales + 'cookies');
+  newText = document.createTextNode(this.totalSales + ' cookies');
   tableData.appendChild(newText);
   tableRow.appendChild(tableData);
   position.appendChild(tableRow);
 };
-
-tableRow = document.createElement ('tr');
-newText = document.createTextNode('total Cookies per Hour');
-tableHeader = document.createElement ('th');
-tableHeader.appendChild(newText);
-tableRow.appendChild(tableHeader);
-
-tableData = document.createElement ('td');
-newText = document.createTextNode(this.totalSales);
-tableData.appendChild(newText);
-tableRow.appendChild(tableData);
-position.appendChild(tableRow);
 
 var firstAndPike = new StoreSalesGenerator('1st and Pike', 23, 65, 6.3);
 var seaTac = new StoreSalesGenerator('SeaTac', 3, 24, 1.2);
