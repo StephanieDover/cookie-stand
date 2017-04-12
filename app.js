@@ -71,3 +71,17 @@ seaTac.estimatedCookies();
 seaCenter.estimatedCookies();
 capitolHill.estimatedCookies();
 alki.estimatedCookies();
+
+function handleStoreGenerator (event){
+  event.preventDefault();
+  var form = event.target;
+  var storeGeneratorName = form.newStoreName.value;
+  var storeGeneratorMinCust = form.newMinCust.value;
+  var storeGeneratorMaxCust = form.newMaxCust.value;
+  var storeGeneratorAvgSale = form.newAvgSale.value;
+  var generatedStore = new StoreSalesGenerator(storeGeneratorName, storeGeneratorMinCust, storeGeneratorMaxCust, storeGeneratorAvgSale);
+  generatedStore.estimatedCookies();
+}
+
+var storeGeneratorFormSubmit = document. getElementById('store-generator');
+storeGeneratorFormSubmit.addEventListener('submit', handleStoreGenerator);
