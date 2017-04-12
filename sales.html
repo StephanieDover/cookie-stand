@@ -2,14 +2,22 @@
 <html>
 <head>
   <title>Salmon Cookies</title>
+    <link type="text/css" rel="stylesheet" href='style.css'/>
 </head>
 <body>
+
   <header>
     <h1>Salmon Cookies</h1>
-    <img src='salmon.png'/>
+    <img src='salmon.png'>
+    <nav><a href='index.html'>Home</a>
+    </nav>
   </header>
-  <nav><a href='index.html'>Home</a>
-  </nav>
+
+  <div id='table'>
+   <table id= 'sales-estimates'>
+   </table>
+ </div>
+
   <section>
   <form id='store-generator'>
      <input name='newStoreName' type='text' placeholder="Store Name"/>
@@ -19,14 +27,9 @@
      <button type='submit'>+ Store</button>
    </form>
  </section>
-  <section>
-    <table>
- <tr id= 'sales-estimates'></tr>
- </table>
- </section>
+
  <footer>
  </footer>
  <script src='app.js'></script>
- <link type="text/css" rel="stylesheet" href='style.css'/>
 </body>
 </html>
