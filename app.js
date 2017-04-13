@@ -17,18 +17,19 @@ var position = document.getElementById('sales-estimates');
 var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 var storeHour = function(){
-  tableData = document.createElement ('td');
   newText = document.createTextNode('');
   tableData.appendChild(newText);
-  tableRow.appendChild(tableData);
   position.appendChild(tableRow);
   tableRow.appendChild(tableHeader);
-  for (var storeHour = 0; storeHour < hours.length; storeHour++ ) {
-    tableData = document.createElement ('td');
+  for (var storeHour = 0; storeHour <= hours.length; storeHour++ ) {
+    tableHeader = document.createElement ('th');
     newText = document.createTextNode(hours[storeHour]);
-    tableData.appendChild(newText);
-    tableRow.appendChild(tableData);
+    tableHeader.appendChild(newText);
+    tableRow.appendChild(tableHeader);
   }
+  tableData.appendChild(newText);
+  position.appendChild(tableRow);
+  tableRow.appendChild(tableHeader);
   newText = document.createTextNode('Daily Location Totals');
   tableHeader.appendChild(newText);
   tableRow.appendChild(tableHeader);
