@@ -7,36 +7,29 @@ function StoreSalesGenerator(name, minCust, maxCust, avgSale) {
   this.avgSale = avgSale;
   this.numCookies = [];
   this.totalSales = 0;
-  this.hour = 6;
 }
 
 var newText = document.createTextNode('text');
-var tableRow, tableHeader, tableData;
+var tableRow = document.createElement('tr');
+var tableHeader = document.createElement('th');
+var tableData = document.createElement ('td');
 var position = document.getElementById('sales-estimates');
+var hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'];
 
 var storeHour = function(){
-  tableRow = document.createElement ('tr');
+  newText = document.createTextNode('');
+  tableData.appendChild(newText);
   position.appendChild(tableRow);
-  tableData = document.createElement ('td');
-  tableRow.appendChild(tableData);
-  tableData = document.createElement ('td');
-  for (var hour = 6; hour < 20; hour++ ) {
+  tableRow.appendChild(tableHeader);
+  for (var storeHour = 0; storeHour <= hours.length; storeHour++ ) {
     tableHeader = document.createElement ('th');
-    if (hour < 12 ) {
-      newText = document.createTextNode(hour + ' am ');
-      tableHeader.appendChild(newText);
-      tableRow.appendChild(tableHeader);
-    } else if (hour == 12) {
-      newText = document.createTextNode('12pm ');
-      tableHeader.appendChild(newText);
-      tableRow.appendChild(tableHeader);
-    } else {
-      newText = document.createTextNode((hour-12) + 'pm ');
-      tableHeader.appendChild(newText);
-      tableRow.appendChild(tableHeader);
-    }
+    newText = document.createTextNode(hours[storeHour]);
+    tableHeader.appendChild(newText);
+    tableRow.appendChild(tableHeader);
   }
-  tableHeader = document.createElement ('th');
+  tableData.appendChild(newText);
+  position.appendChild(tableRow);
+  tableRow.appendChild(tableHeader);
   newText = document.createTextNode('Daily Location Totals');
   tableHeader.appendChild(newText);
   tableRow.appendChild(tableHeader);
@@ -49,7 +42,7 @@ StoreSalesGenerator.prototype.estimatedCookies = function(){
   tableHeader.appendChild(newText);
   tableRow.appendChild(tableHeader);
 
-  for (var customers = 0; customers < 14; customers++ ) {
+  for (var customers = 0; customers < hours.length; customers++ ) {
 
     var randomNum = Math.floor((Math.random()* (this.maxCust - this.minCust) + this.minCust));
     this.numCookies.push(Math.round(randomNum * this.avgSale));
@@ -79,3 +72,17 @@ seaTac.estimatedCookies();
 seaCenter.estimatedCookies();
 capitolHill.estimatedCookies();
 alki.estimatedCookies();
+
+function handleStoreGenerator (event){
+  event.preventDefault();
+  var form = event.target;
+  var storeGeneratorName = form.newStoreName.value;
+  var storeGeneratorMinCust = form.newMinCust.value;
+  var storeGeneratorMaxCust = form.newMaxCust.value;
+  var storeGeneratorAvgSale = form.newAvgSale.value;
+  var generatedStore = new StoreSalesGenerator(storeGeneratorName, storeGeneratorMinCust, storeGeneratorMaxCust, storeGeneratorAvgSale);
+  generatedStore.estimatedCookies();
+}
+
+var storeGeneratorFormSubmit = document. getElementById('store-generator');
+storeGeneratorFormSubmit.addEventListener('submit', handleStoreGenerator);
